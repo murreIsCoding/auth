@@ -1,0 +1,30 @@
+功能点列表：
+1 把 URL、AppID、密码、时间戳拼接为一个字符串；
+2 对字符串通过加密算法加密生成 token；
+3 将 token、AppID、时间戳拼接到 URL 中，形成新的 URL；
+4 解析 URL，得到 token、AppID、时间戳等信息；
+5 从存储中取出 AppID 和对应的密码；
+6 根据时间戳判断 token 是否过期失效；
+7 验证两个 token 是否匹配；
+
+从上面的功能列表中，
+我们发现，1、2、6、7 都是跟 token 有关，负责 token 的生成、验证；
+3、4 都是在处理 URL，负责 URL 的拼接、解析；
+5 是操作 AppID 和密码，负责从存储中读取 AppID 和密码。
+所以，我们可以粗略地得到三个核心的类：
+AuthToken、Url、CredentialStorage。
+
+AuthToken 负责实现 1、2、6、7 这四个操作；
+Url 负责 3、4 两个操作；
+CredentialStorage 负责 5 这个操作。
+
+
+AuthToken 类相关的功能点有四个：
+把 URL、AppID、密码、时间戳拼接为一个字符串；
+对字符串通过加密算法加密生成 token；
+根据时间戳判断 token 是否过期失效；
+验证两个 token 是否匹配。
+
+Url 类相关的功能点有两个：
+将 token、AppID、时间戳拼接到 URL 中，形成新的 URL；
+解析 URL，得到 token、AppID、时间戳等信息。
